@@ -4,6 +4,7 @@ from src.models.clientes import Clientes
 from src.models.productos import Productos
 
 
+
 app = Flask(__name__)
 
 Base.metadata.create_all(engine)
