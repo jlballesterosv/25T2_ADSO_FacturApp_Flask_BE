@@ -1,5 +1,8 @@
 from flask import Flask
 from src.models import Base, engine
+from src.models.clientes import Clientes
+from src.models.productos import Productos
+
 
 app = Flask(__name__)
 
