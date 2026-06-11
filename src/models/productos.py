@@ -39,3 +39,7 @@ class Productos(Base):
     def delete(self):
         session.delete(self)
         session.commit()
+
+    
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
