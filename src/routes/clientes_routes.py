@@ -5,18 +5,24 @@ clientes_bp = Blueprint('clientes', __name__)
 
 @clientes_bp.route('/', methods=['GET'])
 def get_clientes():
-    clientes = Clientes.get()
-    clientes_list = []
-    for cliente in clientes:
-        clientes_list.append({
-            'id': cliente.id,
-            'documento': cliente.documento,
-            'nombre': cliente.nombre,
-            'direccion': cliente.direccion,
-            'telefono': cliente.telefono,
-            'email': cliente.email
-        })
-    return jsonify(clientes_list), 200
+    page = request.args.get('page', default=1, type=int)
+    per_page = request.args.get('per_page', default=5, type=int)
+
+    clientes, total = Clientes.paginate(page=page, per_page=per_page)
+
+    total_pages = (total + per_page - 1) // per_page  # Calcular el número total de páginas
+
+    return jsonify({
+        'data': [cliente.to_dict() for cliente in clientes],
+        'meta' : {
+            'page': page,
+            'per_page': per_page,
+            'total': total,
+            'total_pages': total_pages,
+            'has_next': page < total_pages,
+            'has_prev': page > 1
+        }
+    }), 200
 
 @clientes_bp.route('/<int:id>', methods=['GET'])
 def get_cliente(id):
