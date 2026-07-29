@@ -4,7 +4,6 @@ from flask import Blueprint, request, jsonify
 categorias_bp = Blueprint('categorias', __name__)
 
 @categorias_bp.route('/', methods=['GET'])
-
 def get_categorias():
     categorias = Categorias.get()
     categorias_list = []
