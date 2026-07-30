@@ -1,9 +1,11 @@
 from flask import Blueprint, request, jsonify
 from src.models.clientes import Clientes
+from src.utils.auth import token_required
 
 clientes_bp = Blueprint('clientes', __name__)
 
 @clientes_bp.route('/', methods=['GET'])
+@token_required
 def get_clientes():
     page = request.args.get('page', default=1, type=int)
     per_page = request.args.get('per_page', default=5, type=int)
@@ -25,6 +27,7 @@ def get_clientes():
     }), 200
 
 @clientes_bp.route('/<int:id>', methods=['GET'])
+@token_required
 def get_cliente(id):
     cliente = Clientes.get_by_id(id)
     if cliente:
@@ -41,6 +44,7 @@ def get_cliente(id):
         return jsonify({'message': 'Cliente no encontrado'}), 404
     
 @clientes_bp.route('/', methods=['POST'])
+@token_required
 def create_cliente():
     data = request.get_json()
     cliente = Clientes(

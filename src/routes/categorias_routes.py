@@ -1,5 +1,6 @@
 from src.models.categorias import Categorias
 from flask import Blueprint, request, jsonify
+from src.utils.auth import token_required
 
 categorias_bp = Blueprint('categorias', __name__)
 
@@ -27,6 +28,7 @@ def get_categoria(id):
         return jsonify({'message': 'Categoría no encontrada'}), 404
 
 @categorias_bp.route('/', methods=['POST'])
+@token_required
 def create_categoria():
     data = request.get_json()
     categoria = Categorias(

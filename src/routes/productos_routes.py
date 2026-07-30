@@ -1,10 +1,13 @@
 from flask import Blueprint, request, jsonify
 from src.models.productos import Productos
+from src.utils.auth import token_required, rol_required
 
 
 productos_bp = Blueprint('productos', __name__)
 
 @productos_bp.route('/', methods=['GET'])
+@token_required
+@rol_required('Administrador', 'Vendedor')
 def get_productos():
     page = request.args.get('page', default=1, type=int)
     per_page = request.args.get('per_page', default=5, type=int)
@@ -28,6 +31,8 @@ def get_productos():
    
 
 @productos_bp.route('/<int:id>', methods=['GET'])
+@token_required
+@rol_required('Administrador', 'Vendedor')
 def get_producto(id):
     producto = Productos.get_by_id(id)
     if producto:
@@ -48,6 +53,8 @@ def get_producto(id):
 
 
 @productos_bp.route('/', methods=['POST'])
+@token_required
+@rol_required('Administrador')
 def create_producto():
     data = request.get_json()
     producto = Productos(

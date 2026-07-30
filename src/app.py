@@ -3,10 +3,15 @@ from src.models import Base, engine
 from src.models.clientes import Clientes
 from src.models.productos import Productos
 from src.routes import all_blueprints
+import os
+from dotenv import load_dotenv
 
 
+load_dotenv()
 
 app = Flask(__name__)
+
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 
 Base.metadata.create_all(engine)
 
