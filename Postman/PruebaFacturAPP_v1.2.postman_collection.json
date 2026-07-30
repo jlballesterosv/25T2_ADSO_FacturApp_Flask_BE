@@ -1,6 +1,6 @@
 {
     "info": {
-        "name": "PruebaFacturAPP",
+        "name": "TestFacturAPP",
         "_postman_id": "081e44b3-cfee-467b-b4d3-0a9a27ae238d",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
@@ -27,6 +27,16 @@
                     }
                 }
             ],
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{token}}",
+                        "type": "string"
+                    }
+                ]
+            },
             "item": [
                 {
                     "name": "Actualizar Producto",
@@ -78,9 +88,6 @@
                                     "language": "json"
                                 }
                             }
-                        },
-                        "auth": {
-                            "type": "noauth"
                         }
                     },
                     "response": [],
@@ -129,15 +136,12 @@
                         "header": [],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\r\n    \"codigo\":\"544773\",\r\n    \"descripcion\":\"Leche en polvo 900G\",\r\n    \"nombre\":\"Leche en polvo 900G\",\r\n    \"unidad_medida\":\"UND\",\r\n    \"precio\":6000,\r\n    \"stock\":150,\r\n    \"id_categoria\":1\r\n}",
+                            "raw": "{\r\n    \"codigo\":\"78787998\",\r\n    \"descripcion\":\"Leche evaporada 900G\",\r\n    \"nombre\":\"Leche evaporada 900G\",\r\n    \"unidad_medida\":\"UND\",\r\n    \"precio\":6000,\r\n    \"stock\":150,\r\n    \"id_categoria\":1\r\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
                                 }
                             }
-                        },
-                        "auth": {
-                            "type": "noauth"
                         }
                     },
                     "response": [],
@@ -167,7 +171,7 @@
                     ],
                     "request": {
                         "url": {
-                            "raw": "{{base_url}}/api/v1/productos/1",
+                            "raw": "{{base_url}}/api/v1/productos/4",
                             "host": [
                                 "{{base_url}}"
                             ],
@@ -175,14 +179,11 @@
                                 "api",
                                 "v1",
                                 "productos",
-                                "1"
+                                "4"
                             ]
                         },
                         "method": "GET",
-                        "header": [],
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "header": []
                     },
                     "response": [],
                     "protocolProfileBehavior": {}
@@ -211,7 +212,7 @@
                     ],
                     "request": {
                         "url": {
-                            "raw": "{{base_url}}/api/v1/productos/",
+                            "raw": "{{base_url}}/api/v1/productos/?page=1&per_page=2",
                             "host": [
                                 "{{base_url}}"
                             ],
@@ -220,13 +221,20 @@
                                 "v1",
                                 "productos",
                                 ""
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "2"
+                                }
                             ]
                         },
                         "method": "GET",
-                        "header": [],
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "header": []
                     },
                     "response": [],
                     "protocolProfileBehavior": {}
@@ -255,6 +263,16 @@
                     }
                 }
             ],
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{token}}",
+                        "type": "string"
+                    }
+                ]
+            },
             "item": [
                 {
                     "name": "Obtener Todas las Categorias",
@@ -292,10 +310,7 @@
                             ]
                         },
                         "method": "GET",
-                        "header": [],
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "header": []
                     },
                     "response": [],
                     "protocolProfileBehavior": {}
@@ -336,10 +351,7 @@
                             ]
                         },
                         "method": "GET",
-                        "header": [],
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "header": []
                     },
                     "response": [],
                     "protocolProfileBehavior": {}
@@ -383,7 +395,233 @@
                         "header": [],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\r\n    \"nombre\":\"Ropa Femenina\"\r\n}",
+                            "raw": "{\r\n    \"nombre\":\"Ropa Masculina\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {}
+                }
+            ]
+        },
+        {
+            "name": "Clientes",
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            ""
+                        ]
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            ""
+                        ]
+                    }
+                }
+            ],
+            "item": [
+                {
+                    "name": "Traer Todos los Clientes",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    ""
+                                ]
+                            }
+                        }
+                    ],
+                    "request": {
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/clientes/?page=1&per_page=2",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "clientes",
+                                ""
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "2"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {}
+                }
+            ]
+        },
+        {
+            "name": "auth",
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            ""
+                        ]
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            ""
+                        ]
+                    }
+                }
+            ],
+            "item": [
+                {
+                    "name": "Registrar Usuario",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    ""
+                                ]
+                            }
+                        }
+                    ],
+                    "request": {
+                        "url": {
+                            "raw": "http://127.0.0.1:5000/api/v1/auth/register",
+                            "protocol": "http",
+                            "host": [
+                                "127",
+                                "0",
+                                "0",
+                                "1"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "api",
+                                "v1",
+                                "auth",
+                                "register"
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"email\": \"lremirez@email.com\",\r\n  \"password\": \"clave12345\",\r\n  \"nombre\": \"Luisa Ramirez\",\r\n  \"rol\": \"Administrador\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {}
+                },
+                {
+                    "name": "Login",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    "if (pm.response.code === 200) {",
+                                    "    pm.environment.set(\"token\", pm.response.json().access_token);",
+                                    "}"
+                                ]
+                            }
+                        },
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                    ""
+                                ]
+                            }
+                        }
+                    ],
+                    "request": {
+                        "url": {
+                            "raw": "http://127.0.0.1:5000/api/v1/auth/login",
+                            "protocol": "http",
+                            "host": [
+                                "127",
+                                "0",
+                                "0",
+                                "1"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "api",
+                                "v1",
+                                "auth",
+                                "login"
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"email\": \"lremirez@email.com\",\r\n  \"password\": \"clave12345\"\r\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
