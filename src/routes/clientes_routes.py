@@ -5,7 +5,7 @@ from src.utils.auth import token_required
 clientes_bp = Blueprint('clientes', __name__)
 
 @clientes_bp.route('/', methods=['GET'])
-@token_required
+
 def get_clientes():
     page = request.args.get('page', default=1, type=int)
     per_page = request.args.get('per_page', default=5, type=int)
@@ -55,4 +55,4 @@ def create_cliente():
         email=data['email']
     )
     cliente.save()
-    return jsonify({'message': 'Cliente creado exitosamente'}), 201
+    return jsonify(cliente.to_dict()), 201
