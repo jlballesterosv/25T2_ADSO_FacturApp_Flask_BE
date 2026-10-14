@@ -24,6 +24,10 @@ for bp in all_blueprints:
     print(url_prefix)
     app.register_blueprint(bp, url_prefix=url_prefix)
 
+@app.route('/')
+def salud():
+    return {'estado': 'ok', 'servicio': 'facturapp-api'}, 200
+
 if __name__ == '__main__':
     puerto = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=puerto)
